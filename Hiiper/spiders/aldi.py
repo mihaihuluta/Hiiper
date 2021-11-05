@@ -6,6 +6,10 @@ class AldiSpider(scrapy.Spider):
     allowed_domains = [ 'aldi.nl' ]
     start_urls = ['https://www.aldi.nl/producten.html']
 
+    def __init__(self, *a, **kw):
+        super(AldiSpider, self).__init__(*a, **kw)
+        self.categories = []
+    
     def parse(self, response):
         category_level_1 = response.css('div.mod-content-tile__content div')
         for n in category_level_1:
